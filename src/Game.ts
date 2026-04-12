@@ -22,7 +22,7 @@ export class Game {
       type: INIT_GAME,
       payload: {
         gameid: this.GameID,
-        color: "black",
+        color: 'b',
       }
     }))
 
@@ -30,7 +30,7 @@ export class Game {
       type: INIT_GAME,
       payload: {
         gameid: this.GameID,
-        color: "white",
+        color: 'w',
       }
     }))
   }

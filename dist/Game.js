@@ -19,14 +19,14 @@ export class Game {
             type: INIT_GAME,
             payload: {
                 gameid: this.GameID,
-                color: "black",
+                color: 'b',
             }
         }));
         this.player1.send(JSON.stringify({
             type: INIT_GAME,
             payload: {
                 gameid: this.GameID,
-                color: "white",
+                color: 'w',
             }
         }));
     }
