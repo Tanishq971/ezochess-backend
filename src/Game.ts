@@ -1,7 +1,7 @@
 import { WebSocket } from "ws"
 import { Chess } from 'chess.js'
 import { MOVE, GAME_OVER, INIT_GAME } from "./messages.js";
-
+import { nanoid } from "nanoid";
 
 export class Game {
   public player1: WebSocket;
@@ -9,15 +9,16 @@ export class Game {
   private board: Chess;
   private moves: string[]
   private StartTime: Date;
-  public GameID: number;
+  public GameID: string;
   constructor(player1: WebSocket, player2: WebSocket) {
     this.StartTime = new Date()
     this.moves = []
     this.board = new Chess();
     this.player1 = player1;
     this.player2 = player2;
-    this.GameID = Math.floor(Math.random() * 10 + 100000);
-
+    this.GameID = nanoid(8);
+   
+    
     this.player2.send(JSON.stringify({
       type: INIT_GAME,
       payload: {
@@ -49,7 +50,6 @@ export class Game {
 
     try {
       const isValid = this.board.move(move);
-
 
       if (this.board.isGameOver()) {
         this.player1.send(JSON.stringify({
